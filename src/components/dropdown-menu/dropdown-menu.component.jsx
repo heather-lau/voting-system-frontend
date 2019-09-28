@@ -1,11 +1,13 @@
 import React from 'react'
 
+import { DropdownMenuContainer } from './dropdown-menu.styles'
+
 const DropdownMenu = () => (
-  <div>
+  <DropdownMenuContainer>
     <button>New campaign</button>
     <button>Campaigns</button>
     <button>Sign out</button>
-  </div>
+  </DropdownMenuContainer>
 )
 
 export default DropdownMenu

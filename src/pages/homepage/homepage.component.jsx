@@ -1,13 +1,13 @@
 import React from 'react'
+import { Route } from 'react-router-dom';
 
-import CampaignList from '../../components/campaign-list/campaign-list.component'
-import VoteResultList from '../../components/vote-result-list/vote-result-list.component'
+import CampaignOverviewPage from '../campaign-overview/campaign-detail.component'
+import CampaignDetailPage from '../campaign-detail/campaign-detail.component'
 
-const HomePage = () => (
+const HomePage = ({ match }) => (
     <div>
-        <h1>Campaigns</h1>
-        <CampaignList/>
-        <VoteResultList />
+        <Route exact path={`${match.path}`} component={CampaignOverviewPage} />
+        <Route path={`${match.path}/:campaignId`} component={CampaignDetailPage} />
     </div>
 )
 

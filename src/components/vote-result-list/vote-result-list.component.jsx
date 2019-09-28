@@ -9,27 +9,27 @@ import {
 
 const options = [
   {
-    id: "jslkdfjeoi23",
+    id: "9ugs",
     name: 'Taylor Swift - Winner'
   },
   {
-    id: "jslkdfjeo4trei",
+    id: "fsg9p0ug",
     name: 'Ed Sheeran'
   },  
   {
-    id: "jslkdfretrjeoi",
+    id: "fpsu89",
     name: 'Lady Gaga'
   },
   {
-    id: "jslkdfjeoisfdg",
+    id: "ifoahsd",
     name: 'Post Malone'
   },
   {
-    id: "jslkdfjeoi234",
+    id: "flihu4",
     name: 'Billie Eillish'
   },  
   {
-    id: "jslkdfjeoi34r",
+    id: "ldsafhiu",
     name: 'Sam Smith'
   }
 ]
@@ -37,8 +37,8 @@ const options = [
 const VoteResultList = () => (
   <VoteResultListContainer>
     {options.map(option => (
-      <VoteResultItemContainer>
-        <VoteResultItem key={option.id} option={option}/>
+      <VoteResultItemContainer key={option.id}>
+        <VoteResultItem option={option}/>
       </VoteResultItemContainer>
     ))}
   </VoteResultListContainer>

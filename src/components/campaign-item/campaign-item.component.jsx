@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 import { 
     CampaignItemContainer, 
@@ -9,8 +10,10 @@ import {
     User
 } from './campaign-item.styles'
 
-const CampaignItem = ({ campaign }) => (
-    <CampaignItemContainer>
+const CampaignItem = ({ campaign, history, match }) => (
+    <CampaignItemContainer
+        onClick={() => history.push(`${match.url}/${campaign._id}`)}
+    >
         <VoteCounter>
             <TotalVote>500</TotalVote>
             <Votes>votes</Votes>
@@ -23,4 +26,4 @@ const CampaignItem = ({ campaign }) => (
     </CampaignItemContainer>
 )
 
-export default CampaignItem
+export default withRouter(CampaignItem)

@@ -8,6 +8,7 @@ export const VoteResultListContainer = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 40px
 `
 
 export const VoteResultItemContainer = styled.div`

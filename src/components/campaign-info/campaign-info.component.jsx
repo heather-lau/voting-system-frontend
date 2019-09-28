@@ -7,9 +7,9 @@ import {
     TotalVote,
     Votes,
     User
-} from './campaign-item.styles'
+} from './campaign-info.styles'
 
-const CampaignItem = ({ campaign }) => (
+const CampaignInfo = ({ campaign }) => (
     <CampaignItemContainer>
         <VoteCounter>
             <TotalVote>500</TotalVote>
@@ -23,4 +23,4 @@ const CampaignItem = ({ campaign }) => (
     </CampaignItemContainer>
 )
 
-export default CampaignItem
+export default CampaignInfo

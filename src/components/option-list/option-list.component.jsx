@@ -6,23 +6,23 @@ import { OptionListContainer } from './option-list.styles'
 
 const options = [
     {
-        "_id": "5d8b4e167ca03323e3898ab9",
+        "_id": "234",
         "name": "Michael Jordan"
     },
     {
-        "_id": "5d8b4e167ca03323e3898ab8",
+        "_id": "132434",
         "name": "Kobe Bryant"
     },
     {
-        "_id": "5d8b4e167ca03323e3898ab7",
+        "_id": "1234234",
         "name": "Leborn James"
     },
     {
-        "_id": "5d8b4e167ca03323e3898ab9",
+        "_id": "123545325423",
         "name": "Michael Jordan"
     },
     {
-        "_id": "5d8b4e167ca03323e3898ab8",
+        "_id": "436543323",
         "name": "Kobe Bryant"
     },
     {
