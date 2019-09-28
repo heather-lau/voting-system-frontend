@@ -3,11 +3,11 @@ import styled from 'styled-components'
 export const CampaignItemContainer = styled.div`
   margin-bottom: 40px;
   display: flex;
-  align-items: center;
 `
 
 export const VoteCounter = styled.div`
   text-align: center;
+  align-self: center;
   margin-right: 40px;
 `
 

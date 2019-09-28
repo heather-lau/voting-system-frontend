@@ -3,6 +3,8 @@ import React from 'react'
 import FormInput from '../form-input/form-input.component'
 import CutsomButton from '../custom-button/custom-button.component'
 
+import { SignUpContainer, SignUpTitle } from './sign-up.styles'
+
 class SignUp extends React.Component {
   constructor() {
     super()
@@ -43,8 +45,8 @@ class SignUp extends React.Component {
   render() {
     const { name, email, hkid, password, confirmPassword } = this.state
     return (
-      <div>
-        <h2>I don't have a account</h2>
+      <SignUpContainer>
+        <SignUpTitle>I don't have a account</SignUpTitle>
         <span>Sign up with your email and hkid</span>
         <form className='sign-up-form' onSubmit={this.handleSubmit}>
           <FormInput 
@@ -89,7 +91,7 @@ class SignUp extends React.Component {
           />
           <CutsomButton type='submit'>Sign up</CutsomButton>
         </form>
-      </div>
+      </SignUpContainer>
     )
   }
 }
