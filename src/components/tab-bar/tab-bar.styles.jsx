@@ -16,8 +16,9 @@ const tabOn = css`
 export const Tab = styled.div`
   text-transform: uppercase;
   padding: 20px 0;
-  margin-right: 40px;
+  margin-right: 30px;
   color: #91919A;
+  cursor: pointer;
 
   &:hover {
     color: #333;

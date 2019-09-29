@@ -2,6 +2,7 @@ import React from 'react'
 
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
+import Auth from '../../utils/auth.js'
 
 import {
   SignInContainer,
@@ -18,9 +19,19 @@ class SignIn extends React.Component {
     }
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault()
-    this.setState({ email: '', password: '' })
+
+    const { email, password } = this.state
+
+    try {
+      const response = await Auth.login(email, password)
+      const { accessToken, refreshToken } = response
+      Auth.storeTokens(accessToken, refreshToken)
+      this.setState({ email: '', password: '' })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   handleChange = event => {

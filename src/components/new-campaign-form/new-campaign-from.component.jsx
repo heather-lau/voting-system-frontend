@@ -11,9 +11,10 @@ class NewCampaignForm extends React.Component {
     this.state = {
       title: '',
       description: '',
-      starts: '',
-      ends: '',
-      voteOptions: []
+      starts: null,
+      ends: null,
+      voteOptions: [],
+      focusedInput: null
     }
   }
 
@@ -22,8 +23,8 @@ class NewCampaignForm extends React.Component {
     this.setState({ 
       title: '',
       description: '',
-      starts: '',
-      ends: '',
+      starts: null,
+      ends: null,
     })
   }
 
