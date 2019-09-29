@@ -2,8 +2,8 @@ import apiPaths from '../constants/paths'
 import CONFIG from '../config/config'
 
 export default {
-  // POST login form
-  login: async (email, password) => {
+  // POST signin form
+  signin: async (email, password) => {
     try {
       const url = `${CONFIG.api_host}${apiPaths.SIGN_IN}`
       let response = await fetch(url, {
@@ -13,6 +13,25 @@ export default {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({email,password}),
+      })
+      let responseJson = await response.json()
+      return responseJson && responseJson.payload
+    } catch (err) {
+      return err
+    }
+  },
+
+  // POST signup form
+  signup: async (name, email, hkid, password) => {
+    try {
+      const url = `${CONFIG.api_host}${apiPaths.SIGN_UP}`
+      let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({name, email, hkid, password}),
       })
       let responseJson = await response.json()
       return responseJson && responseJson.payload

@@ -25,7 +25,7 @@ class SignIn extends React.Component {
     const { email, password } = this.state
 
     try {
-      const response = await Auth.login(email, password)
+      const response = await Auth.signin(email, password)
       const { accessToken, refreshToken } = response
       Auth.storeTokens(accessToken, refreshToken)
       this.setState({ email: '', password: '' })

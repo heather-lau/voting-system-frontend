@@ -1,7 +1,9 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 
-import { DropdownMenuContainer, MenuItem } from './menu-dropdown.styles';
+import Auth from '../../utils/auth'
+
+import { DropdownMenuContainer, MenuItem } from './menu-dropdown.styles'
 
 const MenuDropdown = ({ history }) => (
   <DropdownMenuContainer>
@@ -11,7 +13,10 @@ const MenuDropdown = ({ history }) => (
     <MenuItem onClick={() => {history.push('/me/campaigns')}}>
       <span>Campaigns</span>
     </MenuItem>
-    <MenuItem onClick={() => {history.push('/sign out')}}>
+    <MenuItem onClick={() => {
+      Auth.removeTokens()
+      history.push('/')
+    }}>
       <span>Sign out</span>
     </MenuItem>
   </DropdownMenuContainer>

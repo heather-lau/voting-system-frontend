@@ -3,7 +3,8 @@ const apiPaths = {
   SIGN_IN: 'signin',
   USER_ACCESS: 'access',
 
-  CAMPAIGN: 'campaign'
+  CAMPAIGN: 'campaign',
+  USER_CAMPAIGN: 'campaign/user'
 };
 
 export default apiPaths

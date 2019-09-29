@@ -3,6 +3,8 @@ import React from 'react'
 import FormInput from '../form-input/form-input.component'
 import CutsomButton from '../custom-button/custom-button.component'
 
+import Auth from '../../utils/auth'
+
 import { SignUpContainer, SignUpTitle } from './sign-up.styles'
 
 class SignUp extends React.Component {
@@ -23,23 +25,30 @@ class SignUp extends React.Component {
     this.setState({ [name]: value })
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault()
 
-    const { password, confirmPassword } = this.state
+    const { name, email, hkid, password, confirmPassword } = this.state
 
     if (password !== confirmPassword) {
       alert("password don't match")
       return
     }
 
-    this.setState({
-      name: '',
-      email: '',
-      hkid: '',
-      password: '',
-      confirmPassword: ''
-    })
+    try {
+      const response = await Auth.signup(name, email, hkid, password)
+      const { accessToken, refreshToken } = response
+      Auth.storeTokens(accessToken, refreshToken)
+      this.setState({
+        name: '',
+        email: '',
+        hkid: '',
+        password: '',
+        confirmPassword: ''
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {
