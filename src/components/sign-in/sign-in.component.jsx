@@ -30,7 +30,8 @@ class SignIn extends React.Component {
       Auth.storeTokens(accessToken, refreshToken)
       this.setState({ email: '', password: '' })
     } catch (error) {
-      console.log(error)
+      let errorMessage = error && error.errMsg
+      alert(errorMessage)
     }
   }
 

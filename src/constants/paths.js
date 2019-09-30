@@ -5,6 +5,6 @@ const apiPaths = {
 
   CAMPAIGN: 'campaign',
   USER_CAMPAIGN: 'campaign/user'
-};
+}
 
 export default apiPaths

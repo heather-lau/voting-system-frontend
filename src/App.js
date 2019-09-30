@@ -11,9 +11,9 @@ import HomePage from './pages/homepage/homepage.component'
 import NewCampaignPage from './pages/new-campaign/new-campagin.component.jsx'
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
 import UserCampaignsPage from './pages/user-campaigns/user-campaigns.component.jsx'
+import ErrorNotFoundPage from './pages/error-not-found/error-not-found.component.jsx'
 
 import Auth from './utils/auth'
-
 
 class App extends React.Component {
   async componentDidMount() {
@@ -37,6 +37,7 @@ class App extends React.Component {
           <Route exact path='/signin' component={SignInAndSignUpPage}/>
           <Route exact path='/new-campaign' component={NewCampaignPage}/>
           <Route exact path='/me/campaigns' component={UserCampaignsPage}/>
+          <Route exact component={ErrorNotFoundPage}/>
         </Switch>
       </div>
     )
