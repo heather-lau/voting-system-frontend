@@ -9,8 +9,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentUser: action.payload
       }
+    case 'RESET_CURRENT_USER':
+      return INITIAL_STATE
     default:
-      return state
+    return state
   }
 }
 

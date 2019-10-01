@@ -3,8 +3,7 @@ import React from 'react'
 import CampaignList from '../../components/campaign-list/campaign-list.component'
 import TabBar from '../../components/tab-bar/tab-bar.component'
 
-import CONFIG from '../../config/config'
-import apiPaths from '../../constants/paths'
+import apiUrls from '../../constants/urls'
 import Auth from '../../utils/auth'
 
 class UserCampaignsPage extends React.Component{
@@ -19,8 +18,7 @@ class UserCampaignsPage extends React.Component{
   async componentDidMount() {
     const tokens = Auth.getTokens()
     const { accessToken } = tokens
-    const url = `${CONFIG.api_host}${apiPaths.USER_CAMPAIGN}`
-    const resposne = await fetch(url, {
+    const resposne = await fetch(apiUrls.USER_CAMPAIGN, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${accessToken}`

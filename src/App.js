@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import ErrorBoundary from './components/error/error.component'
 
 import './App.css';
 
@@ -19,6 +20,7 @@ class App extends React.Component {
   async componentDidMount() {
     const { setCurrentUser } = this.props
     const tokens = Auth.getTokens()
+    console.log(tokens)
     if (tokens && tokens.accessToken) {
       const user = await Auth.checkUser(tokens.accessToken)
       if (user) { 
@@ -32,20 +34,33 @@ class App extends React.Component {
       <div>
         <Header/>
         <Switch>
-          <Route exact path='/' render={()=><Redirect to='/campaigns'/>}/>
-          <Route path='/campaigns' component={HomePage}/>
-          <Route exact path='/signin' component={SignInAndSignUpPage}/>
-          <Route exact path='/new-campaign' component={NewCampaignPage}/>
-          <Route exact path='/me/campaigns' component={UserCampaignsPage}/>
-          <Route exact component={ErrorNotFoundPage}/>
+          <ErrorBoundary>
+            <Route exact path='/' render={()=><Redirect to='/campaigns'/>}/>
+            <Route path='/campaigns' component={HomePage}/>
+            <Route exact path='/signin' render={() => this.props.currentUser ? (
+                <Redirect to='/' />
+              ) : (
+                < SignInAndSignUpPage/>
+            )} />
+            <Route exact path='/new-campaign' component={NewCampaignPage}/>
+            <Route exact path='/me/campaigns' component={UserCampaignsPage}/>
+            <Route exact component={ErrorNotFoundPage}/>
+          </ErrorBoundary>
         </Switch>
       </div>
     )
   }
 }
 
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+})
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(App)

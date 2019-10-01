@@ -1,8 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import { setCurrentUser } from '../../redux/user/user.actions'
 
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
 import Auth from '../../utils/auth.js'
+import apiUrls from '../../constants/urls' 
 
 import {
   SignInContainer,
@@ -23,15 +27,36 @@ class SignIn extends React.Component {
     event.preventDefault()
 
     const { email, password } = this.state
+    const { setCurrentUser } = this.props
 
     try {
-      const response = await Auth.signin(email, password)
-      const { accessToken, refreshToken } = response
+      let response = await fetch(apiUrls.SIGN_IN, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email,password }),
+      })
+
+      // Check if is user not created
+      let responseJson = await response.json()
+      if (response.status !== 200) {
+        throw new Error(responseJson.errMsg)
+      }
+
+      // Store tokens
+      const { accessToken, refreshToken, userData } = responseJson.payload
       Auth.storeTokens(accessToken, refreshToken)
-      this.setState({ email: '', password: '' })
+      this.setState({ 
+        email: '', 
+        password: '' 
+      })
+      if (userData) { 
+        setCurrentUser({...userData})
+      }
     } catch (error) {
-      let errorMessage = error && error.errMsg
-      alert(errorMessage)
+      alert(error)
     }
   }
 
@@ -71,4 +96,8 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(null, mapDispatchToProps)(SignIn)

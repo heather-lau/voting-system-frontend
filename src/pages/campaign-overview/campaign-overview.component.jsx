@@ -3,8 +3,7 @@ import React from 'react'
 import CampaignList from '../../components/campaign-list/campaign-list.component'
 import TabBar from '../../components/tab-bar/tab-bar.component'
 
-import CONFIG from '../../config/config'
-import apiPaths from '../../constants/paths'
+import apiUrls from '../../constants/urls'
 
 class CampaignOverviewPage extends React.Component{
   constructor() {
@@ -16,7 +15,7 @@ class CampaignOverviewPage extends React.Component{
   }
 
   async componentDidMount() {
-    const resposne = await fetch(`${CONFIG.api_host}${apiPaths.CAMPAIGN}`)
+    const resposne = await fetch(apiUrls.CAMPAIGN)
     const responseJson = await resposne.json()
     const campaigns = responseJson && responseJson.payload
     this.setState({ campaigns: campaigns })
