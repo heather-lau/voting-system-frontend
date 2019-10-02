@@ -8,6 +8,7 @@ import VoteForm from '../../components/vote-form/vote-form.component'
 import { CampaignDetailContainer } from './campaign-detail.styles'
 
 import API from '../../constants/api'
+import Auth from '../../utils/auth'
 
 class CampaignDetailPage extends React.Component{
   constructor() {
@@ -19,11 +20,20 @@ class CampaignDetailPage extends React.Component{
   }
 
   async componentDidMount() {
+    const tokens = Auth.getTokens()
+    const { accessToken } = tokens
     const { match } = this.props
     const campaignId = match.params.campaignId
     const url = `${API.campaigns}/${campaignId}`
     try {
-      const resposne = await fetch(url)
+      let headers = {}
+      if ( accessToken ) {
+        headers = { Authorization: `Bearer ${accessToken}`}
+      }
+      const resposne = await fetch(url, {
+        method: 'GET',
+        headers: headers
+      })
       const responseJson = await resposne.json()
       const campaign = responseJson && responseJson.payload
       this.setState({ campaign: campaign })
@@ -39,7 +49,9 @@ class CampaignDetailPage extends React.Component{
         {campaign ? (
           <CampaignDetailContainer>
             <CampaignInfo campaign={campaign}/>
-            <VoteResultList options={campaign.voteOptions} totalVotes={campaign.totalVotes}/>
+            {campaign.status === 'Ended' ? (
+              <VoteResultList options={campaign.voteOptions} totalVotes={campaign.totalVotes}/>
+            ) : null }
             <VoteForm campaign={campaign} currentUser={currentUser}/>
           </CampaignDetailContainer>
         ) : (
@@ -56,6 +68,4 @@ const mapStateToProps = state => ({
   currentUser: state.user.currentUser
 })
 
-export default connect(
-  mapStateToProps
-)(CampaignDetailPage)
+export default connect(mapStateToProps)(CampaignDetailPage)

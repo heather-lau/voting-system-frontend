@@ -28,7 +28,6 @@ class VoteForm extends React.Component{
       const tokens = Auth.getTokens()
       const { accessToken } = tokens
       const url = `${API.campaigns}/${campaign._id}/vote`
-      console.log(url)
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -56,20 +55,25 @@ class VoteForm extends React.Component{
 
   render() {
     const { campaign } = this.props
+    const { voteOptions, userVoted, status } = campaign
     return (
       <form onSubmit={this.handleSubmit}>
         <VoteListContainer>
-          {campaign.voteOptions.map(option => (
+          {voteOptions.map(option => (
             <RadioInput 
               key={option._id}
               label={option.name}
               value={option._id}
-              checked={this.state.voteOption === option._id}
+              checked={userVoted ? userVoted._id === option._id 
+                : this.state.voteOption === option._id}
               handleChange={this.handleChange}
+              disabled={userVoted || status === 'Ended' ? true : false}
             />
           ))}
         </VoteListContainer>
-        <CustomButton type='submit'>Submit Vote</CustomButton>
+        {userVoted || status === 'Ended' ? null : (
+          <CustomButton type='submit'>Submit Vote</CustomButton>
+        )}
       </form>
     )
   }

@@ -28,9 +28,10 @@ export const RadioContainer = styled.div`
   @media only screen and (max-width: 768px) {
     width: 48%;
   }
-
-  &:hover {
-    color: rgb(0, 51, 232);
-    border-color: rgb(0, 51, 232);
-  }
+  ${({ disabled }) => !disabled && `
+    &:hover {
+      border-color: rgb(0, 51, 232);
+      color: rgb(0, 51, 232);
+    }
+  `}
 `
