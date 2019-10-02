@@ -6,7 +6,7 @@ import { setCurrentUser } from '../../redux/user/user.actions'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
 import Auth from '../../utils/auth.js'
-import apiUrls from '../../constants/urls' 
+import API from '../../constants/api' 
 
 import {
   SignInContainer,
@@ -30,7 +30,7 @@ class SignIn extends React.Component {
     const { setCurrentUser } = this.props
 
     try {
-      let response = await fetch(apiUrls.SIGN_IN, {
+      let response = await fetch(API.signIn, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

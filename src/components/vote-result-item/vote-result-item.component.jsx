@@ -7,17 +7,24 @@ import {
   Bar
 } from './vote-result-item.styles'
 
-const VoteResultItem = ({ option }) => (
-  <div>
-    <VoteResultContent>
-      <h4>{option.name}</h4>
-      <span>200 votes | 30 %</span>
-    </VoteResultContent>
-    <BarContainer>
-      <BarBackground/>
-      <Bar/>
-    </BarContainer>
-  </div>
-)
+
+const VoteResultItem = ({ option, totalVotes }) => {
+  const votePercentage = totalVotes ? (
+    Math.floor(option.totalVotes / totalVotes * 100) + '%'
+  ) : 0 + '%'
+
+  return (
+    <div>
+      <VoteResultContent>
+        <h4>{option.name}</h4>
+        <span>{option.totalVotes} votes | {votePercentage}</span>
+      </VoteResultContent>
+      <BarContainer>
+        <BarBackground/>
+        <Bar percentage={votePercentage}/>
+      </BarContainer>
+    </div>
+  )
+}
 
 export default VoteResultItem

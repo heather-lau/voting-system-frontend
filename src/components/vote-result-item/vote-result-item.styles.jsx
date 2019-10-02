@@ -24,7 +24,7 @@ export const Bar = styled.div`
   z-index: 1;
   background-color: #3E59EF;
   height: 20px;
-  width: 50%;
+  width: ${props => props.percentage};
   position: absolute;
 `
 

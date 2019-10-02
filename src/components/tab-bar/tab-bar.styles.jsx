@@ -10,6 +10,7 @@ export const TabBarContainer = styled.div`
 
 const tabOn = css`
   color: #333;
+  margin-bottom: -1px;
   border-bottom: 1px solid #333;
 `;
 

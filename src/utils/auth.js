@@ -1,4 +1,4 @@
-import apiUrls from '../constants/urls'
+import API from '../constants/api'
 
 export default {
   // Store tokens to localStroage
@@ -27,7 +27,7 @@ export default {
   // Check user is logged in
   checkUser: async (accessToken) => {
     try {
-      const url = apiUrls.USER_ACCESS
+      const url = API.userAccess
       let response = await fetch(url, {
         method: 'GET',
         headers: {

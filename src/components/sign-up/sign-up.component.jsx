@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { setCurrentUser } from '../../redux/user/user.actions'
 
 import Auth from '../../utils/auth'
-import apiUrls from '../../constants/urls'
+import API from '../../constants/api'
 
 import FormInput from '../form-input/form-input.component'
 import CutsomButton from '../custom-button/custom-button.component'
@@ -41,7 +41,7 @@ class SignUp extends React.Component {
     }
 
     try {
-      let response = await fetch(apiUrls.SIGN_UP, {
+      let response = await fetch(API.signUp, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

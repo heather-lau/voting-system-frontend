@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import dateFormat from 'dateformat'
 
 import { 
   CampaignItemContainer, 
@@ -10,20 +10,23 @@ import {
   User
 } from './campaign-item.styles'
 
-const CampaignItem = ({ campaign, history, match }) => (
-  <CampaignItemContainer
-    onClick={() => history.push(`${match.url}/${campaign._id}`)}
-  >
-    <VoteCounter>
-      <TotalVote>500</TotalVote>
-      <Votes>votes</Votes>
-    </VoteCounter>
-    <div>
-      <h2>{campaign.title}</h2>
-      <User>by {campaign.hostBy.name}</User>
-      <DataRange>from {campaign.starts} to {campaign.ends}</DataRange>
-    </div>
-  </CampaignItemContainer>
-)
+const CampaignItem = ({ campaign, handleClick }) => {
+  const starts = dateFormat(campaign.starts, "d mmm, yyyy")
+  const ends = dateFormat(campaign.ends, "d mmm, yyyy")
 
-export default withRouter(CampaignItem)
+  return(
+    <CampaignItemContainer onClick={handleClick}>
+      <VoteCounter>
+        <TotalVote>{campaign.totalVotes}</TotalVote>
+        <Votes>votes</Votes>
+      </VoteCounter>
+      <div>
+        <h2>{campaign.title}</h2>
+        <User>by {campaign.hostBy}</User>
+        <DataRange>from {starts} to {ends}</DataRange>
+      </div>
+    </CampaignItemContainer>
+  )
+}
+
+export default CampaignItem

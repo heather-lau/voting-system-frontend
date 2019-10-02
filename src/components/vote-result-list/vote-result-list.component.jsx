@@ -7,38 +7,11 @@ import {
   VoteResultItemContainer
 } from './vote-result-list.styles'
 
-const options = [
-  {
-    id: "9ugs",
-    name: 'Taylor Swift - Winner'
-  },
-  {
-    id: "fsg9p0ug",
-    name: 'Ed Sheeran'
-  },  
-  {
-    id: "fpsu89",
-    name: 'Lady Gaga'
-  },
-  {
-    id: "ifoahsd",
-    name: 'Post Malone'
-  },
-  {
-    id: "flihu4",
-    name: 'Billie Eillish'
-  },  
-  {
-    id: "ldsafhiu",
-    name: 'Sam Smith'
-  }
-]
-
-const VoteResultList = () => (
+const VoteResultList = ({options, totalVotes}) => (
   <VoteResultListContainer>
     {options.map(option => (
-      <VoteResultItemContainer key={option.id}>
-        <VoteResultItem option={option}/>
+      <VoteResultItemContainer key={option._id}>
+        <VoteResultItem option={option} totalVotes={totalVotes}/>
       </VoteResultItemContainer>
     ))}
   </VoteResultListContainer>
