@@ -11,7 +11,7 @@ const UserCampaignsPage = () => {
   const { accessToken } = tokens
   return (
     <div>
-      <h1>Campaigns</h1>
+      <h1>Your Campaigns</h1>
       <CampaignsOverview
         api={API.userCampaigns}
         tabs={['Started', 'Pending', 'Ended']}

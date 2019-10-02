@@ -1,10 +1,8 @@
 import styled from 'styled-components'
 
 export const Radio = styled.input.attrs({ type: 'radio' })`
-  /* display:none; */
-  
   &:checked {
-    background-color: #241009
+    background-color: #241009;
   }
 `
 
@@ -18,7 +16,7 @@ export const RadioContainer = styled.div`
   padding: 40px 0;
   border: 1px solid #eee;
   border-radius: 4px;
-  margin-bottom: 16px;
+  margin: 0 0.6% 16px;
   width: 32%;
   font-weight: 700;
   background-color: #fff;
@@ -26,7 +24,9 @@ export const RadioContainer = styled.div`
   color: ${props => props.checked ? 'rgb(0, 51, 232)' : '#333'};
 
   @media only screen and (max-width: 768px) {
-    width: 48%;
+    width: 100%;
+    text-align: left;
+    padding-left: 40px;
   }
   ${({ disabled }) => !disabled && `
     &:hover {

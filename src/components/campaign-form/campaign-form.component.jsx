@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import { withRouter } from 'react-router-dom'
 
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
@@ -10,15 +11,14 @@ import API from '../../constants/api'
 
 class CampaignForm extends React.Component {
   constructor(props) {
-    super(props)
+    super()
 
     this.state = {
-      title: this.props.title || '',
-      description: this.props.description || '',
-      starts: this.props.starts || null,
-      ends: this.props.ends || null,
-      voteOptions: this.props.voteOptions || [],
-
+      title: '',
+      description: '',
+      starts: null,
+      ends: null,
+      voteOptions: [],
       focusedInput: null,
       showdata: null,
       inputs: ['input-0']
@@ -52,13 +52,12 @@ class CampaignForm extends React.Component {
         console.error(err)
       }
     }
- 
   }
 
   handleSubmit = async event => {
     event.preventDefault()
     const { title, description, starts, ends, voteOptions } = this.state
-    const { token, action, method } = this.props
+    const { token, action, method, history } = this.props
     try {
       const response = await fetch(action, {
         method: method,
@@ -76,8 +75,9 @@ class CampaignForm extends React.Component {
         })
       })
       let responseJson = await response.json()
-      if (response.status === 201) {
-        alert('Success created')
+      if (response.status === 201 || response.status === 200) {
+        alert('Successfully submitted')
+        history.push('/me/campaigns')
       } else {
         alert(responseJson.errMsg)
         throw new Error(responseJson.errMsg)
@@ -85,17 +85,6 @@ class CampaignForm extends React.Component {
     } catch (err) {
       console.error(err)
     }
-
-    this.setState({ 
-      title: '',
-      description: '',
-      starts: null,
-      ends: null,
-      voteOptions: [],
-      focusedInput: null,
-      showdata: null,
-      inputs: ['input-0']
-    })
   }
 
   handleChange = event => {
@@ -166,4 +155,4 @@ class CampaignForm extends React.Component {
   }
 }
 
-export default CampaignForm
+export default withRouter(CampaignForm)

@@ -6,7 +6,7 @@ import CampaignForm from '../../components/campaign-form/campaign-form.component
 
 import API from '../../constants/api'
 
-const EditCampaignPage = ({match}) => {
+const EditCampaignPage = ({ match }) => {
   const tokens = Auth.getTokens()
   const { accessToken } = tokens
   const { campaignId } = match.params
